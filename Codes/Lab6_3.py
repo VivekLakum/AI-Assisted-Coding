@@ -74,22 +74,122 @@ so your task is to  implement the following functionality:
 # create a function that takes an integer from user 
 # you need to calculate the 1st sum of n natural numbers using for loop and while loop both and compare the both code
 # First i want to excute the code using for loop and then using while loop and then compare the both code  """
-def sum_natural_numbers_for_loop(n):
-    total = 0
-    for i in range(1, n + 1):
-        total += i
-    return total
-def sum_natural_numbers_while_loop(n):
-    total = 0
-    i = 1
-    while i <= n:
-        total += i
-        i += 1
-    return total
-# Taking input from user
-n = int(input("Enter a positive integer to calculate the sum of first n natural numbers: "))
-sum_for_loop = sum_natural_numbers_for_loop(n)  
-sum_while_loop = sum_natural_numbers_while_loop(n)
-print(f"Sum of first {n} natural numbers using for loop: {sum_for_loop}")
-print(f"Sum of first {n} natural numbers using while loop: {sum_while_loop}")
-# justification
+# def sum_natural_numbers_for_loop(n):
+#     total = 0
+#     for i in range(1, n + 1):
+#         total += i
+#     return total
+# def sum_natural_numbers_while_loop(n):
+#     total = 0
+#     i = 1
+#     while i <= n:
+#         total += i
+#         i += 1
+#     return total
+# # Taking input from user
+# n = int(input("Enter a positive integer to calculate the sum of first n natural numbers: "))
+# sum_for_loop = sum_natural_numbers_for_loop(n)  
+# sum_while_loop = sum_natural_numbers_while_loop(n)
+# print(f"Sum of first {n} natural numbers using for loop: {sum_for_loop}")
+# print(f"Sum of first {n} natural numbers using while loop: {sum_while_loop}")
+# # comparison points  of For Loop vs While Loop for Summing Natural Numbers
+# for loop :
+# 1. Readability: For loops are generally more readable for fixed iterations.
+# 2. Control Flow: Implicit control with range function.
+# 3. Use Case: Best for known iteration count.
+# 4. Performance: Slightly faster due to less overhead.
+# 5. Error-Prone: Less prone to infinite loops due to fixed iteration count.
+# while loop :
+# 1. Readability: Slightly less clear due to manual control of loop variable.
+# 2. Control Flow: Explicit control with initialization and increment.
+# 3. Use Case: Best for unknown iterations or complex conditions.
+# 4. Performance: Slightly slower due to additional control logic.
+# 5. Error-Prone: More prone to infinite loops if not properly managed.
+"""assume  you are building a simple python module to classify the ages of people into different categories based on their age.
+using conditionals statements we need to classify the ages into child, teenager, adult, and senior citizen.
+"""
+# def classify_age(age):
+#     if age < 0:
+#         return "Invalid age"
+#     elif age <= 12:
+#         return "Child"
+#     elif age <= 19:
+#         return "Teenager"
+#     elif age <= 59:
+#         return "Adult"
+#     else:
+#         return "Senior Citizen"
+# # Example usage
+# age = int(input("Enter age: "))
+# category = classify_age(age)
+# print(f"The person is classified as: {category}")
+""" give another implementation of the same code using nested if else statements """
+# def classify_age_nested(age):
+#     if age < 0:
+#         return "Invalid age"
+#     else:
+#         if age <= 12:
+#             return "Child"
+#         else:
+#             if age <= 19:
+#                 return "Teenager"
+#             else:
+#                 if age <= 59:
+#                     return "Adult"
+#                 else:
+#                     return "Senior Citizen"
+# # Example usage
+# age = int(input("Enter age: ")) 
+# category = classify_age_nested(age)
+# print(f"The person is classified as: {category}")
+
+"""Act as a developer creating a module  that your are developing a banking application.
+Your task is to implement the following functionality:
+create a basic function that such as deposit() withdraw() and check balance().
+also add the step by step explanation of the code
+make sure that user can create an account with an initial balance and perform transactions."""
+class BankAccount:
+    def __init__(self, initial_balance=0):
+        # Initialize the bank account with an initial balance
+        self.balance = initial_balance
+    def deposit(self, amount):
+        # Add the specified amount to the account balance
+        if amount > 0:
+            self.balance += amount
+            print(f"Deposited: ${amount:.2f}")
+        else:
+            print("Deposit amount must be positive.")
+    def withdraw(self, amount):
+        # Subtract the specified amount from the account balance if sufficient funds are available
+        if amount > 0:
+            if amount <= self.balance:
+                self.balance -= amount
+                print(f"Withdrew: ${amount:.2f}")
+            else:
+                print("Insufficient funds for this withdrawal.")
+        else:
+            print("Withdrawal amount must be positive.")
+    def check_balance(self):
+        # Return the current account balance
+        return self.balance
+# Example usage
+initial_deposit = float(input("Enter initial deposit amount: "))
+account = BankAccount(initial_deposit)  
+print(f"Account created with initial balance: ${account.check_balance():.2f}")
+while True:
+    action = input("Choose an action: deposit, withdraw, check balance, or exit: ").lower()
+    if action == "deposit":
+        amount = float(input("Enter amount to deposit: "))
+        account.deposit(amount)
+    elif action == "withdraw":
+        amount = float(input("Enter amount to withdraw: "))
+        account.withdraw(amount)
+    elif action == "check balance":
+        print(f"Current balance: ${account.check_balance():.2f}")
+    elif action == "exit":
+        print("Exiting the banking application.")
+        break
+    else:
+        print("Invalid action. Please choose again.")
+# Justification
+# The BankAccount class encapsulates the functionality of a simple banking application. The __init__ method initializes the account with an optional initial balance. The deposit method allows users to add funds to their account, ensuring that only positive amounts are accepted. The withdraw method enables users to remove funds, checking for sufficient balance before proceeding. The check_balance method provides a way to view the current account balance. The example usage demonstrates how a user can interact with the banking application, performing deposits, withdrawals, and balance checks in a loop until they choose to exit. This design promotes clarity, usability, and basic error handling for common banking operations.
